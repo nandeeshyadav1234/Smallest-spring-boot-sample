@@ -1,7 +1,14 @@
-FROM eclipse-temurin:11-jre as runtime
+# Use the official eclipse-temurin JRE 11 image as the base runtime
+FROM eclipse-temurin:11-jre
 
-WORKDIR /app
+# Define an argument for the JAR file path, defaulting to a common Maven location
+ARG JAR_FILE=target/*.jar
 
-COPY target/example.smallest-0.0.1-SNAPSHOT.jar app.jar
+# Copy the built JAR file from your host machine into the container as 'app.jar'
+COPY ${JAR_FILE} app.jar
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Expose the port your Spring Boot application listens on (default is 8080)
+EXPOSE 8080
+
+# Set the entry point command to run the application
+ENTRYPOINT ["java", "-jar", "/app.jar"]
