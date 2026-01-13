@@ -16,6 +16,5 @@ spec:
         - name: springboot-container
           image: shamamumtaz/springboot-sample-repo:v1.0
 # Image that will be used to containers in the cluster
-          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
