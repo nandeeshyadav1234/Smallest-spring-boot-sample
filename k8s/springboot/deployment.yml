@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: springboot-app
+spec:
+  selector:
+    matchLabels:
+      app: springboot-app
+  replicas: 1 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      containers:
+        - name: springboot-container
+          image: shamamumtaz/springboot-sample-repo:v1.0
+# Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
